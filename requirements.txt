@@ -1,8 +1,4 @@
 krakenex==2.1.0
 pykrakenapi==0.2.1
 schedule==1.1.0
-<<<<<<< HEAD
 pyTelegramBotAPI==3.7.9
-=======
-pyTelegramBotAPI==3.7.9
->>>>>>> 9f261a2ea8745d3aef5e93ae1f7152b4a3740655
