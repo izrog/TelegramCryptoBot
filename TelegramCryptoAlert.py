@@ -5,28 +5,30 @@ import telebot
 import krakenex
 from pykrakenapi import KrakenAPI
 
-API_KEY = os.getenv('API_KEY')
+TELEBOT_API_KEY = os.getenv('TELEBOT_API_KEY')
 CHAT_ID = os.getenv('CHAT_ID')
 
-api = API_KEY
+telebotapi = TELEBOT_API_KEY
 chatid = CHAT_ID
 
-bot = telebot.TeleBot(api)
+bot = telebot.TeleBot(telebotapi)
 api = krakenex.API()
 k = KrakenAPI(api)
-coins = ["BTC", "ETH", "DOGE", "ADA", "XRP"]
-alerttime = [":00",":05",":10",":15",":20",":25",":30",":35",":40",":45",":50",":55"]
+coins = ['ADA','DOGE','ETH','BTC','XRP']
+pairs = "ADAUSD,XDGUSD,XETHZUSD,XXBTZUSD,XXRPZUSD"
+alerttime = [":00",":05",":10",":15",":20",":28",":30",":35",":40",":45",":50",":55"]
 
 def price(pair):
     val = k.get_ticker_information(pair)
-    return "{}: ${}".format(pair, val.a[0][0])
+    i  = 0
+    text = ""
+    for index, coin in val.iterrows():
+        text = text + coins[i] + ":$" + coin[0][0] + "\n"
+        i += 1
+    return text
 
 def price_alert():
-    text = ""
-    for coin in coins:
-        pair = coin + "USD"
-        text = text + price(pair) + "\n"
-    bot.send_message(chatid, text)
+    bot.send_message(chatid, price(pairs))
 
 for min in alerttime:
     schedule.every().hour.at(min).do(price_alert)
