@@ -9,7 +9,11 @@ API_KEY = os.getenv('API_KEY')
 CHAT_ID = os.getenv('CHAT_ID')
 TIME_MINUTES = os.getenv('TIME_MINUTES')
 
-bot = telebot.TeleBot(API_KEY)
+api = API_KEY
+chatid = CHAT_ID
+timemin = TIME_MINUTES
+
+bot = telebot.TeleBot(api)
 api = krakenex.API()
 k = KrakenAPI(api)
 coins = ["BTC", "ETH", "DOGE", "ADA", "XRP"]
@@ -23,9 +27,9 @@ def price_alert():
     for coin in coins:
         pair = coin + "USD"
         text = text + price(pair) + "\n"
-    bot.send_message(CHAT_ID, text)
+    bot.send_message(chatid, text)
 
-schedule.every(TIME_MINUTES).minutes.do(price_alert)
+schedule.every(timemin).minutes.do(price_alert)
 
 while True:
     schedule.run_pending()
