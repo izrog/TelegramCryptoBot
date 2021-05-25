@@ -16,7 +16,7 @@ api = krakenex.API()
 k = KrakenAPI(api)
 coins = ['ADA','DOGE','ETH','BTC','XRP']
 pairs = "ADAUSD,XDGUSD,XETHZUSD,XXBTZUSD,XXRPZUSD"
-alerttime = [":00",":05",":10",":15",":20",":28",":30",":35",":40",":45",":50",":55"]
+alerttime = [":00",":05",":10",":15",":20",":25",":30",":35",":40",":45",":50",":55"]
 
 def price(pair):
     val = k.get_ticker_information(pair)
