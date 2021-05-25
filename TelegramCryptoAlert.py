@@ -11,7 +11,7 @@ TIME_MINUTES = os.getenv('TIME_MINUTES')
 
 api = API_KEY
 chatid = CHAT_ID
-timemin = TIME_MINUTES
+timemin = int(TIME_MINUTES)
 
 bot = telebot.TeleBot(api)
 api = krakenex.API()
