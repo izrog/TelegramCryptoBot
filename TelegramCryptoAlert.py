@@ -7,6 +7,7 @@ from pykrakenapi import KrakenAPI
 
 API_KEY = os.getenv('API_KEY')
 CHAT_ID = os.getenv('CHAT_ID')
+TIME_MINUTES = os.getenv('TIME_MINUTES')
 
 bot = telebot.TeleBot(API_KEY)
 api = krakenex.API()
@@ -24,7 +25,7 @@ def price_alert():
         text = text + price(pair) + "\n"
     bot.send_message(CHAT_ID, text)
 
-schedule.every(5).minutes.do(price_alert)
+schedule.every(TIME_MINUTES).minutes.do(price_alert)
 
 while True:
     schedule.run_pending()
