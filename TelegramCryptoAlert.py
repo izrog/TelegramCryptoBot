@@ -4,16 +4,14 @@ import time
 import telebot
 from pycoingecko import CoinGeckoAPI
 
-
 #Telegram setup
-TELEBOT_API_KEY = os.getenv('TELEBOT_API_KEY')
-CHAT_ID = os.getenv('CHAT_ID')
-telebotapi = TELEBOT_API_KEY
-chatid = CHAT_ID
+telebotapi = os.getenv('TELEBOT_API_KEY')
+chatid = os.getenv('CHAT_ID')
 bot = telebot.TeleBot(telebotapi)
 
 def price_alert():
     bot.send_message(chatid, price())
+    print(chatid, price)
 
 #CoinGecko setup
 cg = CoinGeckoAPI()
@@ -38,8 +36,7 @@ def price():
 
     for crypto,value in values.items():
         for prop,val in value.items():
-            text = text + portfolio[crypto] + ": $" + val + "\n"
-
+            text = text + portfolio[crypto] + ": $" + str(val) + "\n"
     return text
 
 
