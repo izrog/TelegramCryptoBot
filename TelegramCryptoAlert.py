@@ -33,10 +33,10 @@ crypto_list =  list(portfolio.keys())
 def price():
     values = cg.get_price(ids=crypto_list, vs_currencies='usd')
     text = ''
-
-    for crypto,value in values.items():
-        for prop,val in value.items():
-            text = text + portfolio[crypto] + ": $" + str(val) + "\n"
+    
+    for apiID,crypto in portfolio.items():
+        text = text + crypto + " : " + str(values[apiID]['usd']) + '\n'
+   
     return text
 
 
