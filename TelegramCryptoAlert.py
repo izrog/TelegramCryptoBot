@@ -25,7 +25,9 @@ portfolio = {
     'ravencoin':'RVN',
     'ripple':'XRP',
     'solana':'SOL',
-    'apeswap-finance':'BANANA'
+    'apeswap-finance':'BANANA',
+    'binancecoin':'BNB',
+    'shiba-inu':'SHIB',
 }
 
 crypto_list =  list(portfolio.keys())
